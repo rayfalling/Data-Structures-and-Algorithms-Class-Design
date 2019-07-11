@@ -1,0 +1,7 @@
+#workspace files
+.vs/
+.vscode/
+build
+[Dd]ebug/
+.idea/
+node_module/
