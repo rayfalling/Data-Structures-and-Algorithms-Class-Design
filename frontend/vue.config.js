@@ -87,14 +87,14 @@ module.exports = {
     https: false, // https:{type:Boolean}
     open: true, //配置自动启动浏览器
     hotOnly: true, // 热更新
-    // proxy: {
-    //   "/pbsevice/*": {
-    //     target: "http://172.16.1.12:2018",
-    //     changeOrigin: true,
-    //     //ws: true,//websocket支持
-    //     secure: false
-    //   },
-    // }
+    proxy: {
+      "^/api/*": {
+        target: "http://127.0.0.1:8081/",
+        changeOrigin: true,
+        //ws: true,//websocket支持
+        secure: false
+      },
+    }
   },
 
   // 第三方插件配置 https://www.npmjs.com/package/vue-cli-plugin-style-resources-loader

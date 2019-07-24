@@ -13,51 +13,141 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Header Files\model">
+      <UniqueIdentifier>{b5825ef6-d2f3-4009-b5f4-1d1c51055fb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\http_server">
+      <UniqueIdentifier>{dbd50846-0465-4602-8e7d-34633a17744f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\json">
+      <UniqueIdentifier>{05cf6000-1008-43e7-8b4a-6ffc7359f3e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\http_handler">
+      <UniqueIdentifier>{68b14f52-a9c9-4e34-b8b5-9c45e13469c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{a846f268-e2fc-4df9-bf43-0e1ada298715}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\http_server">
+      <UniqueIdentifier>{f1fa11b1-26c4-4ba9-93c6-313a73e6359f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\json">
+      <UniqueIdentifier>{61f7f150-a1a3-40ef-9771-6d1bc7d429a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\http_handler">
+      <UniqueIdentifier>{344d9f23-bcfa-4c33-a264-fbb151f89aba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\data_access_layer">
+      <UniqueIdentifier>{006b28aa-db2a-42d8-8f7b-f75528042122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\data_access_layer">
+      <UniqueIdentifier>{6fcd99b0-9a71-4601-b91e-51d8dc7803ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\httphandler\handlers.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\model\Client.h">
+      <Filter>Header Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Date.h">
+      <Filter>Header Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Group.h">
+      <Filter>Header Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Listing.h">
+      <Filter>Header Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Advertisement.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Bid.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Categories.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Category.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Client.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Date.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Group.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Listing.cpp">
+      <Filter>Source Files\model</Filter>
     </ClCompile>
     <ClCompile Include="src\httpserver\http_server.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\http_server</Filter>
     </ClCompile>
     <ClCompile Include="src\httpserver\mongoose.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\http_server</Filter>
     </ClCompile>
     <ClCompile Include="src\json\json.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\json</Filter>
     </ClCompile>
     <ClCompile Include="src\json\jsonHelper.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\json</Filter>
     </ClCompile>
-    <ClCompile Include="src\implemention\testClass.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\httphandler\handlers.cpp">
+      <Filter>Source Files\http_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data_access_layer\registry.cpp">
+      <Filter>Source Files\data_access_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data_access_layer\login.cpp">
+      <Filter>Source Files\data_access_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\GlobalSettings.cpp">
+      <Filter>Source Files\model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\main.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\httphandler\handlers.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\model\Advertisement.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Bid.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Categories.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Category.h">
+      <Filter>Header Files\model</Filter>
     </ClInclude>
     <ClInclude Include="src\httpserver\mongoose.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\http_server</Filter>
     </ClInclude>
     <ClInclude Include="src\httpserver\http_server.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\http_server</Filter>
     </ClInclude>
     <ClInclude Include="src\json\json.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\json</Filter>
     </ClInclude>
     <ClInclude Include="src\json\jsonHelper.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\json</Filter>
     </ClInclude>
-    <ClInclude Include="src\implemention\testClass.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\httphandler\handlers.hpp">
+      <Filter>Header Files\http_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="src\data_access_layer\registry.h">
+      <Filter>Header Files\data_access_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\data_access_layer\login.h">
+      <Filter>Header Files\data_access_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\GlobalSettings.h">
+      <Filter>Header Files\model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
