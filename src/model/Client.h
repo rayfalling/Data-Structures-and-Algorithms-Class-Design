@@ -1,10 +1,7 @@
 #pragma once
 #include <string>
-#include <vector>
 #include "Date.h"
-
-using namespace std;
-
+using string = std::string;
 namespace model{
 	class client final {
 		string firstname_;
@@ -13,8 +10,7 @@ namespace model{
 		string password_;
 
 	public:
-		~client() = default;
-
+		~client();
 		client();
 		client(client const& c);
 		client(string& firstname, string& lastname, string& email, string& password);
@@ -29,9 +25,9 @@ namespace model{
 		[[nodiscard]] string get_email() const;
 		[[nodiscard]] string get_password() const;
 
-		bool verify_password(string& password);
+		bool verify_password(string& password) const;
 
 	};
 
-	istream& operator>>(istream& stream, client& c);
+	std::istream& operator>>(std::istream& stream, client& c);
 }

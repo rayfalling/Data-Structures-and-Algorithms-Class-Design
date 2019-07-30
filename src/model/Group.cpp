@@ -1,14 +1,16 @@
 #include "Group.h"
 
-model::client* group::operator[](const string& email) {
-	for (auto it = objects.begin(); it != objects.end(); ++it) {
-		if ((*it)->get_email() == email) return *it;
+namespace model{
+	client* group::operator[](const std::string& email) {
+		for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+			if ((*it)->get_email() == email) return *it;
+		}
+		return nullptr;
 	}
-	return nullptr;
+
+	void group::add(client* ptr) { objects_.push_back(ptr); }
+
+	group::iterator group::begin() { return objects_.begin(); }
+
+	group::iterator group::end() { return objects_.end(); }
 }
-
-void group::add(model::client* ptr) { objects.push_back(ptr); }
-
-group::iterator group::begin() { return objects.begin(); }
-
-group::iterator group::end() { return objects.end(); }

@@ -4,13 +4,13 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  }
+    state: {
+        loginStatus: false
+    },
+    mutations: {
+        changeLoginStatus(state, payload) {
+            state.loginStatus = payload;
+        }
+    },
+    actions: {}
 })

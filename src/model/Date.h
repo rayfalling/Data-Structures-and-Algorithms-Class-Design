@@ -1,8 +1,5 @@
 #pragma once
 #include <ostream>
-#include "../json/json.hpp"
-
-using namespace std;
 
 namespace model{
 	class date final {
@@ -35,13 +32,8 @@ namespace model{
 
 		bool operator==(const date& rhs) const;
 		bool operator<(const date& rhs) const;
-
 	};
 
-	ostream& operator<<(ostream&, const date&);
-	istream& operator>>(istream&, date&);
-
-	void to_json(nlohmann::json& j, const date& date);
-
-	void from_json(const nlohmann::json& j, date& date);
+	std::ostream& operator<<(std::ostream&, const date&);
+	std::istream& operator>>(std::istream&, date&);
 }

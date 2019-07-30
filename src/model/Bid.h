@@ -1,34 +1,34 @@
 #pragma once
 #include "Date.h"
 #include <string>
+using string = std::string;
+namespace model{
+	class bid final {
+		string email_;
+		float amount_;
+		int quantity_;
+		date date_;
 
-using namespace std;
+	public:
+		~bid();
+		bid();
+		bid(const bid& b);
+		bid(string email, float amount, int quantity, date& date);
 
-class Bid;
+		[[nodiscard]] string get_email() const;
+		[[nodiscard]] float get_amount() const;
+		[[nodiscard]] int get_quantity() const;
+		[[nodiscard]] date get_date() const;
 
-istream& operator>>(istream& stream, Bid& b);
+		void set_email(const string&);
+		void set_amount(const float&);
+		void set_quantity(const int&);
+		void set_date(const date&);
 
-class Bid {
-	string email_;
-	float amount_;
-	int quantity_;
-	model::date date_;
+		bool operator<(const bid& rhs) const;
+		bool operator==(const bid& rhs) const;
+	};
 
-public:
-	Bid(void);
-	Bid(const Bid& b);
-	Bid(string email, float amount, int quantity,  model::date& date);
+	std::istream& operator>>(std::istream& stream, bid& b);
 
-	[[nodiscard]] virtual string getEmail() const;
-	[[nodiscard]] virtual float getAmount() const;
-	[[nodiscard]] virtual int getQuantity() const;
-	[[nodiscard]] virtual model::date getDate() const;
-
-	virtual void setEmail(const string&);
-	virtual void setAmount(const float&);
-	virtual void setQuantity(const int&);
-	virtual void setDate(const model::date&);
-
-	virtual bool operator<(const Bid& rhs) const;
-	virtual bool operator==(const Bid& rhs) const;
-};
+}

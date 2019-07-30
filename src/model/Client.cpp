@@ -1,7 +1,13 @@
 #include "Client.h"
+#include <string>
+#include <iostream>
+
+using string = std::string;
 
 namespace model{
-	client::client(void) {
+	client::~client() = default;
+
+	client::client() {
 		this->firstname_ = "";
 		this->lastname_ = "";
 		this->email_ = "";
@@ -32,9 +38,9 @@ namespace model{
 	string client::get_email() const { return this->email_; }
 	string client::get_password() const { return this->password_; }
 
-	bool client::verify_password(string& password) { return this->password_ == password; }
+	bool client::verify_password(string& password) const { return this->password_ == password; }
 
-	istream& operator>>(istream& stream, client& c) {
+	std::istream& operator>>(std::istream& stream, client& c) {
 		string firstname, lastname, email, password;
 		stream >> firstname >> lastname >> email >> password;
 

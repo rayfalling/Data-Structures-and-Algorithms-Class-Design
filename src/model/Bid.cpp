@@ -1,55 +1,61 @@
 #include "Bid.h"
+#include <iostream>
+#include <string>
+namespace model{
 
-Bid::Bid() {
-	this->email_ = "";
-	this->amount_ = 0;
-	this->quantity_ = 0;
-	this->date_ = model::date();
-}
+	bid::~bid() = default;
 
-Bid::Bid(const Bid& b) {
-	this->email_ = b.getEmail();
-	this->amount_ = b.getAmount();
-	this->quantity_ = b.getQuantity();
-	this->date_ = b.getDate();
-}
+	bid::bid() {
+		this->email_ = "";
+		this->amount_ = 0;
+		this->quantity_ = 0;
+		this->date_ = date();
+	}
 
-Bid::Bid(string email, float amount, int quantity, model::date& date) {
-	this->email_ = email;
-	this->amount_ = amount;
-	this->quantity_ = quantity;
-	this->date_ = date;
-}
+	bid::bid(const bid& b) {
+		this->email_ = b.get_email();
+		this->amount_ = b.get_amount();
+		this->quantity_ = b.get_quantity();
+		this->date_ = b.get_date();
+	}
 
-string Bid::getEmail() const { return this->email_; }
-float Bid::getAmount() const { return this->amount_; }
-int Bid::getQuantity() const { return this->quantity_; }
-model::date Bid::getDate() const { return this->date_; }
+	bid::bid(string email, const float amount, const int quantity, date& date) {
+		this->email_ = std::move(email);
+		this->amount_ = amount;
+		this->quantity_ = quantity;
+		this->date_ = date;
+	}
 
-void Bid::setEmail(const string& email) { this->email_ = email; }
-void Bid::setAmount(const float& amount) { this->amount_ = amount; }
-void Bid::setQuantity(const int& quantity) { this->quantity_ = quantity; }
-void Bid::setDate(const model::date& date) { this->date_ = date; }
+	string bid::get_email() const { return this->email_; }
+	float bid::get_amount() const { return this->amount_; }
+	int bid::get_quantity() const { return this->quantity_; }
+	date bid::get_date() const { return this->date_; }
 
-bool Bid::operator<(const Bid& rhs) const {
-	return this->getAmount() < rhs.getAmount();
-}
+	void bid::set_email(const string& email) { this->email_ = email; }
+	void bid::set_amount(const float& amount) { this->amount_ = amount; }
+	void bid::set_quantity(const int& quantity) { this->quantity_ = quantity; }
+	void bid::set_date(const date& date) { this->date_ = date; }
 
-bool Bid::operator==(const Bid& rhs) const {
-	return this->getAmount() == rhs.getAmount();
-}
+	bool bid::operator<(const bid& rhs) const {
+		return this->get_amount() < rhs.get_amount();
+	}
 
-istream& operator>>(istream& stream, Bid& b) {
-	int quantity;
-	float amount;
-	string email;
-	model::date date;
+	bool bid::operator==(const bid& rhs) const {
+		return this->get_amount() == rhs.get_amount();
+	}
 
-	stream >> email >> amount >> quantity >> date;
-	b.setAmount(amount);
-	b.setDate(date);
-	b.setEmail(email);
-	b.setQuantity(quantity);
+	std::istream& operator>>(std::istream& stream, bid& b) {
+		int quantity;
+		float amount;
+		string email;
+		date date;
 
-	return stream;
+		stream >> email >> amount >> quantity >> date;
+		b.set_amount(amount);
+		b.set_date(date);
+		b.set_email(email);
+		b.set_quantity(quantity);
+
+		return stream;
+	}
 }

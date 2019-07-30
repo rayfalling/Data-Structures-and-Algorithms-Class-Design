@@ -24,10 +24,13 @@ export default new Router({
                 {
                     path: '',
                     component: () => import('./components/Login.vue')
-                },{
-                    path: '/login',
+                }, {
+                    path: 'login',
                     component: () => import('./components/Login.vue')
-                },
+                }, {
+                    path: 'data',
+                    component: () => import('./components/DataTable.vue')
+                }
             ]
         }
     ]

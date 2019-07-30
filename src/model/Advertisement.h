@@ -4,52 +4,48 @@
 #include <iostream>
 #include <queue>
 #include <string>
+using string = std::string;
+namespace model{
+	class advertisement final {
+		int number_;
+		int quantity_;
+		string title_;
+		string seller_email_;
+		string body_;
 
+		date start_;
+		date close_;
+		std::priority_queue<bid> bids_;
 
-using namespace std;
+	public:
+		virtual ~advertisement() = default;
+		advertisement();
+		advertisement(const advertisement& a);
+		advertisement(string title, string seller_email, string body, date start,
+		              date close, int quantity);
 
-class advertisement;
+		void set_start(const date& start);
+		void set_close(const date& close);
+		void set_title(string title);
+		void set_body(string body);
+		void set_number(int number);
+		void set_email(string email);
+		void set_quantity(int quantity);
 
-istream& operator>>(istream& stream, advertisement& a);
+		[[nodiscard]] date get_start() const;
+		[[nodiscard]] date get_close() const;
+		[[nodiscard]] string get_title() const;
+		[[nodiscard]] string get_body() const;
+		[[nodiscard]] string get_email() const;
+		[[nodiscard]] int get_number() const;
+		[[nodiscard]] int get_quantity() const;
 
-class advertisement {
+		bool operator==(const advertisement&) const;
 
-private:
-	int number;
-	int quantity;
-	string title;
-	string seller_email;
-	string body;
+		std::priority_queue<bid>& get_bids();
+		[[nodiscard]] virtual std::vector<bid> get_top_dutch_bids() const;
+	};
 
-	model::date start;
-	model::date close;
-	priority_queue<Bid> bids;
+	std::istream& operator>>(std::istream& stream, advertisement& a);
 
-public:
-	virtual ~advertisement() = default;
-	advertisement();
-	advertisement(const advertisement& a);
-	advertisement(string title, string seller_email, string body, model::date start,
-	              model::date close, int quantity);
-
-	virtual void setStart(const model::date& start);
-	virtual void setClose(const model::date& close);
-	virtual void setTitle(string title);
-	virtual void setBody(string body);
-	virtual void setNumber(int number);
-	virtual void setEmail(string email);
-	virtual void setQuantity(int quantity);
-
-	[[nodiscard]] virtual model::date getStart() const;
-	[[nodiscard]] virtual model::date getClose() const;
-	[[nodiscard]] virtual string getTitle() const;
-	[[nodiscard]] virtual string getBody() const;
-	[[nodiscard]] virtual string getEmail() const;
-	[[nodiscard]] virtual int getNumber() const;
-	[[nodiscard]] virtual int getQuantity() const;
-
-	virtual bool operator==(const advertisement&) const;
-
-	virtual priority_queue<Bid>& getBids();
-	[[nodiscard]] virtual vector<Bid> getTopDutchBids() const;
-};
+}

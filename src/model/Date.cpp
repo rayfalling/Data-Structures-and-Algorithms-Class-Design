@@ -2,7 +2,7 @@
 #include <iomanip>
 
 namespace model{
-	model::date::~date() = default;
+	date::~date() = default;
 
 	date::date() {
 		this->year_ = 0;
@@ -71,16 +71,16 @@ namespace model{
 		return false;
 	}
 
-	ostream& operator<<(ostream& stream, const date& date) {
-		stream << setfill('0') << setw(2) << date.get_month() << '/' << date.get_day()
-			<< '/' << setw(4) << date.get_year() << " " << setw(2)
+	std::ostream& operator<<(std::ostream& stream, const date& date) {
+		stream << std::setfill('0') << std::setw(2) << date.get_month() << '/' << date.get_day()
+			<< '/' << std::setw(4) << date.get_year() << " " << std::setw(2)
 			<< date.get_hour() << ":" << date.get_minute() << ":"
-			<< date.get_second() << endl;
+			<< date.get_second() << std::endl;
 
 		return stream;
 	}
 
-	istream& operator>>(istream& stream, date& date) {
+	std::istream& operator>>(std::istream& stream, date& date) {
 		char tmp;
 		int day, month, year, hour, minute, second;
 		stream >> month >> tmp >> day >> tmp >> year >> hour >> tmp >> minute >>
@@ -93,39 +93,5 @@ namespace model{
 		date.set_second(second);
 
 		return stream;
-	}
-
-	void to_json(nlohmann::json& j, const date& date) {
-		j = nlohmann::json{
-			{"year", date.get_year()}, {"month", date.get_month()}, {"day", date.get_day()},
-			{"hour", date.get_hour()}, {"minute", date.get_minute()}, {"second", date.get_second()}
-		};
-	}
-
-	void from_json(const nlohmann::json& j, date& date) {
-		if (!j["year"].is_null()) {
-			auto year = j.at("year").get<int>();
-			date.set_year(year);
-		}
-		if (!j["month"].is_null()) {
-			auto month = j.at("month").get<int>();
-			date.set_month(month);
-		}
-		if (!j["day"].is_null()) {
-			auto day = j.at("day").get<int>();
-			date.set_day(day);
-		}
-		if (!j["hour"].is_null()) {
-			auto hour = j.at("hour").get<int>();
-			date.set_hour(hour);
-		}
-		if (!j["minute"].is_null()) {
-			auto minute = j.at("minute").get<int>();
-			date.set_minute(minute);
-		}
-		if (!j["second"].is_null()) {
-			auto second = j.at("second").get<int>();
-			date.set_second(second);
-		}
 	}
 }

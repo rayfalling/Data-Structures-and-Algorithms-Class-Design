@@ -4,48 +4,44 @@
 
 #include "Listing.h"
 
-using namespace std;
+namespace model{
+	class category final {
+		int number_;
+		int parent_;
+		string name_;
 
-class Category;
+		std::vector<category*> sub_categories_;
+		std::vector<int> items_;
 
-istream &operator>>(istream &stream, Category &c);
+	public:
+		~category() = default;
+		category();
+		category(int parent, string name);
 
-class Category {
+		[[nodiscard]] int get_number() const;
+		[[nodiscard]] int get_parent() const;
+		[[nodiscard]] string get_name() const;
 
-private:
-	int number;
-	int parent;
-	string name;
+		void set_number(int);
+		void set_parent(int);
+		void set_name(string);
 
-	vector<Category*> sub_categories;
-	vector<int> items;
+		void add_sub_category(category*);
+		void add_item(int);
 
-public:
-	
-	Category(void);
-	Category(int parent, string name);
+		void find_offerings(listing::iterator start,
+		                    listing::iterator finish, listing& matches);
+		void find_offerings_recursive(listing::iterator start,
+		                              listing::iterator finish, listing& matches);
 
-	virtual int getNumber(void) const;
-	virtual int getParent(void) const;
-	virtual string getName(void) const;
-	
-	virtual void setNumber(int);
-	virtual void setParent(int);
-	virtual void setName(string);
+		std::vector<int>::iterator items_begin();
+		std::vector<int>::iterator items_end();
+		std::vector<category*>::iterator sub_categories_begin();
+		std::vector<category*>::iterator sub_categories_end();
 
-	virtual void addSubCategory(Category*);
-	virtual void addItem(int);
+		bool operator==(const category& rhs) const;
+	};
 
-    virtual void findOfferings (listing::iterator start, 
-					listing::iterator finish, listing &matches);
-    virtual void findOfferingsRecursive (listing::iterator start, 
-					listing::iterator finish, listing &matches);
+	std::istream& operator>>(std::istream& stream, category& c);
 
-	virtual vector<int>::iterator itemsBegin();
-	virtual vector<int>::iterator itemsEnd();
-	virtual vector<Category*>::iterator subCategoriesBegin();
-	virtual vector<Category*>::iterator subCategoriesEnd();
-
-	virtual bool operator==(const Category& rhs);
-
-};
+}

@@ -13,7 +13,7 @@
 
 <script>
     export default {
-        name: "exercise1"
+        name: "exercise"
     }
 </script>
 

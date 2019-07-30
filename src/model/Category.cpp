@@ -1,86 +1,85 @@
 #include "Category.h"
+#include <utility>
+#include <algorithm>
 
-Category::Category(void) {
-	this->number = 0;
-	this->parent = 0;
-	this->name = "";
-	this->sub_categories = vector<Category *>();
-	this->items = vector<int>();
-}
-Category::Category(int parent, string name) {
-	this->number = 0;
-	this->parent = parent;
-	this->name = name;
+namespace model{
+	category::category() {
+		this->number_ = 0;
+		this->parent_ = 0;
+		this->name_ = "";
+		this->sub_categories_ = std::vector<category*>();
+		this->items_ = std::vector<int>();
+	}
 
-	this->sub_categories = vector<Category *>();
-	this->items = vector<int>();
-}
+	category::category(const int parent, string name) {
+		this->number_ = 0;
+		this->parent_ = parent;
+		this->name_ = std::move(name);
 
-int	Category::getNumber(void) const { return this->number; }
-int	Category::getParent(void) const { return this->parent; }
-string Category::getName(void) const { return this->name; }
+		this->sub_categories_ = std::vector<category*>();
+		this->items_ = std::vector<int>();
+	}
 
-void Category::setNumber(int number) { this->number = number; }
-void Category::setParent(int parent) { this->parent = parent; }
-void Category::setName(string name) { this->name = name; }
+	int category::get_number() const { return this->number_; }
+	int category::get_parent() const { return this->parent_; }
+	string category::get_name() const { return this->name_; }
 
-void Category::addSubCategory(Category *category) {
-	this->sub_categories.push_back(category);
-}
-void Category::addItem(int item) { this->items.push_back(item); }
+	void category::set_number(const int number) { this->number_ = number; }
+	void category::set_parent(const int parent) { this->parent_ = parent; }
+	void category::set_name(string name) { this->name_ = std::move(name); }
 
-void Category::findOfferings(listing::iterator start, listing::iterator finish,
-							 listing &matches) {
-	listing::iterator	 it = start;
-	vector<int>::iterator pit = this->items.begin();
-	int					  len = 0;
+	void category::add_sub_category(category* category) {
+		this->sub_categories_.push_back(category);
+	}
 
-	while (it != finish) {
-		vector<int>::iterator search;
-		if (find(this->itemsBegin(), this->itemsEnd(), (*it)->getNumber()) !=
-			this->itemsEnd()) {
-			matches.add(*it);
+	void category::add_item(const int item) { this->items_.push_back(item); }
+
+	void category::find_offerings(listing::iterator start, listing::iterator finish, listing& matches) {
+		auto it = start;
+		auto pit = this->items_.begin();
+
+		while (it != finish) {
+			std::vector<int>::iterator search;
+			if (std::find(this->items_begin(), this->items_end(), (*it)->get_number()) !=
+				this->items_end()) {
+				matches.add(*it);
+			}
+			++it;
 		}
-
-		it++;
 	}
-}
 
-void Category::findOfferingsRecursive(listing::iterator start,
-									  listing::iterator finish,
-									  listing &			matches) {
-	findOfferings(start, finish, matches);
-	auto it = this->subCategoriesBegin();
-	while (it != this->subCategoriesEnd()) {
-		(*it)->findOfferingsRecursive(start, finish, matches);
-		it++;
+	void category::find_offerings_recursive(listing::iterator start, listing::iterator finish, listing& matches) {
+		find_offerings(start, finish, matches);
+		auto it = this->sub_categories_begin();
+		while (it != this->sub_categories_end()) {
+			(*it)->find_offerings_recursive(start, finish, matches);
+			++it;
+		}
 	}
-	// for_each(this->subCategoriesBegin(), this->subCategoriesEnd(),
-	// 		 [&](vector<Category *>::iterator it) {
-	// 			 (*it)->findOfferingsRecursive(start, finish, matches);
-	// 		 });
-}
 
-vector<int>::iterator Category::itemsBegin() { return this->items.begin(); }
-vector<int>::iterator Category::itemsEnd() { return this->items.end(); }
-vector<Category *>::iterator Category::subCategoriesBegin() {
-	return this->sub_categories.begin();
-}
-vector<Category *>::iterator Category::subCategoriesEnd() {
-	return this->sub_categories.end();
-}
+	std::vector<int>::iterator category::items_begin() { return this->items_.begin(); }
+	std::vector<int>::iterator category::items_end() { return this->items_.end(); }
 
-bool Category::operator==(const Category &rhs) {
-	return this->number == rhs.getNumber();
-}
+	std::vector<category*>::iterator category::sub_categories_begin() {
+		return this->sub_categories_.begin();
+	}
 
-istream &operator>>(istream &stream, Category &c) {
-	int	parent;
-	string name;
+	std::vector<category*>::iterator category::sub_categories_end() {
+		return this->sub_categories_.end();
+	}
 
-	stream >> parent >> name;
-	c.setParent(parent);
-	c.setName(name);
+	bool category::operator==(const category& rhs) const {
+		return this->number_ == rhs.get_number();
+	}
 
-	return stream;
+	std::istream& operator>>(std::istream& stream, category& c) {
+		int parent;
+		string name;
+
+		stream >> parent >> name;
+		c.set_parent(parent);
+		c.set_name(name);
+
+		return stream;
+	}
 }

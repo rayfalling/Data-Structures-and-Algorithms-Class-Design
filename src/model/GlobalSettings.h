@@ -5,9 +5,9 @@
 #include "Group.h"
 #include <string>
 
-extern Categories categories;
-extern listing advertisements;
-extern group users;
+extern model::categories categories;
+extern model::listing advertisements;
+extern model::group users;
 
 extern string active_user;
 

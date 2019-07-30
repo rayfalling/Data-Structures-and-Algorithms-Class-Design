@@ -2,27 +2,19 @@
 #include <vector>
 
 #include "Advertisement.h"
-
-using namespace std;
-
-class listing final {
-
-protected:
-	typedef vector<advertisement*> Container;
-
-public:
-	~listing();
-	typedef Container::iterator iterator;
-
-protected:
-	Container objects;
-
-public:
-	advertisement* operator[](const int& number);
-
-	void add(advertisement* ptr);
-
-	iterator begin();
-	iterator end();
-
-};
+namespace model{
+	class listing final {
+	protected:
+		typedef std::vector<advertisement*> container;
+	public:
+		~listing();
+		typedef container::iterator iterator;
+	protected:
+		container objects_;
+	public:
+		advertisement* operator[](const int& number);
+		void add(advertisement* ptr);
+		iterator begin();
+		iterator end();
+	};
+}

@@ -1,16 +1,18 @@
 #include "Listing.h"
 
-listing::~listing() = default;
+namespace model{
+	listing::~listing() = default;
 
-advertisement* listing::operator[](const int& number) {
-	for (auto it = objects.begin(); it != objects.end(); ++it) {
-		if ((*it)->getNumber() == number) return (*it);
+	advertisement* listing::operator[](const int& number) {
+		for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+			if ((*it)->get_number() == number) return (*it);
+		}
+		return nullptr;
 	}
-	return nullptr;
+
+	void listing::add(advertisement* ptr) { objects_.push_back(ptr); }
+
+	listing::iterator listing::begin() { return objects_.begin(); }
+
+	listing::iterator listing::end() { return objects_.end(); }
 }
-
-void listing::add(advertisement* ptr) { objects.push_back(ptr); }
-
-listing::iterator listing::begin() { return objects.begin(); }
-
-listing::iterator listing::end() { return objects.end(); }

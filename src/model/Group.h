@@ -1,32 +1,27 @@
 #pragma once
-#include <iostream>
 #include <vector>
-#include <iterator>
-#include <algorithm>
-#include <functional>
 
 #include "Client.h"
 
-using namespace std;
+namespace model{
+	class group final {
+	protected:
+		typedef std::vector<client*> container;
 
-class group {
+	public:
+		~group() = default;
+		typedef container::iterator iterator;
 
-protected:
-	typedef vector<model::client*> Container;
+	protected:
+		container objects_;
 
-public:
-	virtual ~group() = default;
-	typedef Container::iterator iterator;
+	public:
+		client* operator[](const std::string& email);
 
-protected:
-	Container objects;
+		void add(client* ptr);
 
-public:
-	model::client* operator[](const string& email);
+		iterator begin();
+		iterator end();
 
-	virtual void add(model::client* ptr);
-
-	virtual iterator begin();
-	virtual iterator end();
-
-};
+	};
+}

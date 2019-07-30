@@ -48,18 +48,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\model\Client.h">
-      <Filter>Header Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\Date.h">
-      <Filter>Header Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\Group.h">
-      <Filter>Header Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\Listing.h">
-      <Filter>Header Files\model</Filter>
-    </ClCompile>
     <ClCompile Include="src\model\Advertisement.cpp">
       <Filter>Source Files\model</Filter>
     </ClCompile>
@@ -70,18 +58,6 @@
       <Filter>Source Files\model</Filter>
     </ClCompile>
     <ClCompile Include="src\model\Category.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\Client.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\Date.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\Group.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\Listing.cpp">
       <Filter>Source Files\model</Filter>
     </ClCompile>
     <ClCompile Include="src\httpserver\http_server.cpp">
@@ -106,6 +82,27 @@
       <Filter>Source Files\data_access_layer</Filter>
     </ClCompile>
     <ClCompile Include="src\model\GlobalSettings.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\httpHandler\account.cpp">
+      <Filter>Source Files\http_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="src\httpHandler\show.cpp">
+      <Filter>Source Files\http_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data_access_layer\advertisement_access.cpp">
+      <Filter>Source Files\data_access_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Client.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Date.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Group.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Listing.cpp">
       <Filter>Source Files\model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -147,6 +144,27 @@
       <Filter>Header Files\data_access_layer</Filter>
     </ClInclude>
     <ClInclude Include="src\model\GlobalSettings.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\httpHandler\account.h">
+      <Filter>Header Files\http_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="src\httpHandler\show.h">
+      <Filter>Header Files\http_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="src\data_access_layer\advertisement_access.h">
+      <Filter>Header Files\data_access_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Client.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Date.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Group.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Listing.h">
       <Filter>Header Files\model</Filter>
     </ClInclude>
   </ItemGroup>

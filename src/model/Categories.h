@@ -1,36 +1,30 @@
-#ifndef CATEGORIES_H
-#define CATEGORIES_H
-
-#include <string>
+#pragma once
 #include <vector>
 
 #include "Category.h"
-#include "Listing.h"
 
-using namespace std;
+namespace model{
+	class categories final {
 
-class Categories {
+	protected:
+		typedef std::vector<category*> container;
 
-  protected:
-	typedef vector<Category*> Container;
+	public:
+		~categories() = default;
+		typedef container::iterator iterator;
 
-  public:
-	typedef Container::iterator iterator;
+	protected:
+		container objects_;
 
-  protected:
-	Container objects;
+	public:
+		static const int top_level;
+		static const int no_parent;
 
-  public:
-	static const int TOP_LEVEL;
-	static const int NO_PARENT;
-    
-	virtual Category* operator[](const int& number);
-	virtual void add(Category* ptr);
+		category* operator[](const int& number);
+		void add(category* ptr);
 
-	virtual iterator begin();
-	virtual iterator end();
+		iterator begin();
+		iterator end();
 
-};
-
-
-#endif
+	};
+}

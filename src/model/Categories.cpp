@@ -1,15 +1,19 @@
 #include "Categories.h"
-const int Categories::TOP_LEVEL = 0;
-const int Categories::NO_PARENT = -1;
-Category *Categories::operator[](const int &number) {
-	for (iterator it = objects.begin(); it != objects.end(); it++) {
-		if ((*it)->getNumber() == number) return *it;
+
+namespace model{
+
+	const int categories::top_level = 0;
+	const int categories::no_parent = -1;
+
+	category* categories::operator[](const int& number) {
+		for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+			if ((*it)->get_number() == number) return *it;
+		}
+		return nullptr;
 	}
-	return NULL;
+
+	void categories::add(category* ptr) { objects_.push_back(ptr); }
+	categories::iterator categories::begin() { return objects_.begin(); }
+
+	categories::iterator categories::end() { return objects_.end(); }
 }
-
-void Categories::add(Category *ptr) { objects.push_back(ptr); }
-
-Categories::iterator Categories::begin() { return objects.begin(); }
-
-Categories::iterator Categories::end() { return objects.end(); }

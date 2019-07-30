@@ -2,85 +2,87 @@
 #include "Advertisement.h"
 #include <utility>
 
-advertisement::advertisement() {
-	this->seller_email = "";
-	this->title = "";
-	this->body = "";
-	this->quantity = 0;
-	this->number = 0;
-	this->start = model::date();
-	this->close = model::date();
-}
-
-advertisement::advertisement(const advertisement& a) {
-	this->seller_email = a.getEmail();
-	this->title = a.getTitle();
-	this->body = a.getBody();
-	this->quantity = a.getQuantity();
-	this->number = a.getNumber();
-	this->start = a.getStart();
-	this->close = a.getClose();
-}
-
-advertisement::advertisement(string title, string seller_email, string body,
-                             model::date start, model::date close, int quantity) {
-	this->seller_email = std::move(seller_email);
-	this->title = std::move(title);
-	this->body = std::move(body);
-	this->quantity = quantity;
-	this->number = number;
-	this->start = std::move(start);
-	this->close = std::move(close);
-}
-
-void advertisement::setStart(const model::date& start) { this->start = start; }
-void advertisement::setClose(const model::date& close) { this->close = close; }
-void advertisement::setTitle(string title) { this->title = std::move(title); }
-void advertisement::setBody(string body) { this->body = std::move(body); }
-void advertisement::setNumber(const int number) { this->number = number; }
-void advertisement::setEmail(string email) { this->seller_email = std::move(email); }
-void advertisement::setQuantity(const int quantity) { this->quantity = quantity; }
-
-model::date advertisement::getStart() const { return this->start; }
-model::date advertisement::getClose() const { return this->close; }
-string advertisement::getTitle() const { return this->title; }
-string advertisement::getBody() const { return this->body; }
-string advertisement::getEmail() const { return this->seller_email; }
-int advertisement::getNumber() const { return this->number; }
-int advertisement::getQuantity() const { return this->quantity; }
-
-bool advertisement::operator==(const advertisement& a) const {
-	return this->number == a.getNumber();
-}
-
-priority_queue<Bid>& advertisement::getBids(void) { return this->bids; }
-
-vector<Bid> advertisement::getTopDutchBids(void) const {
-
-	vector<Bid> vector;
-	priority_queue<Bid> tempBids = bids;
-	int q = 0;
-	while (!bids.empty() && q < quantity) {
-		vector.push_back(tempBids.top());
-		q += tempBids.top().getQuantity();
-		tempBids.pop();
+namespace model{
+	advertisement::advertisement() {
+		this->seller_email_ = "";
+		this->title_ = "";
+		this->body_ = "";
+		this->quantity_ = 0;
+		this->number_ = 0;
+		this->start_ = date();
+		this->close_ = date();
 	}
 
-	return vector;
-}
+	advertisement::advertisement(const advertisement& a) {
+		this->seller_email_ = a.get_email();
+		this->title_ = a.get_title();
+		this->body_ = a.get_body();
+		this->quantity_ = a.get_quantity();
+		this->number_ = a.get_number();
+		this->start_ = a.get_start();
+		this->close_ = a.get_close();
+	}
 
-istream& operator>>(istream& stream, advertisement& a) {
-	string title, email, body;
-	int quantity;
-	model::date start, close;
-	stream >> title >> email >> quantity >> start >> close >> body;
+	advertisement::advertisement(string title, string seller_email, string body,
+	                             date start, date close, int quantity) {
+		this->seller_email_ = std::move(seller_email);
+		this->title_ = std::move(title);
+		this->body_ = std::move(body);
+		this->quantity_ = quantity;
+		this->number_ = number_;
+		this->start_ = std::move(start);
+		this->close_ = std::move(close);
+	}
 
-	a.setBody(body);
-	a.setClose(close);
-	a.setStart(start);
-	a.setTitle(title);
-	a.setQuantity(quantity);
-	a.setEmail(email);
+	void advertisement::set_start(const date& start) { this->start_ = start; }
+	void advertisement::set_close(const date& close) { this->close_ = close; }
+	void advertisement::set_title(string title) { this->title_ = std::move(title); }
+	void advertisement::set_body(string body) { this->body_ = std::move(body); }
+	void advertisement::set_number(const int number) { this->number_ = number; }
+	void advertisement::set_email(string email) { this->seller_email_ = std::move(email); }
+	void advertisement::set_quantity(const int quantity) { this->quantity_ = quantity; }
 
-	return stream;
+	date advertisement::get_start() const { return this->start_; }
+	date advertisement::get_close() const { return this->close_; }
+	string advertisement::get_title() const { return this->title_; }
+	string advertisement::get_body() const { return this->body_; }
+	string advertisement::get_email() const { return this->seller_email_; }
+	int advertisement::get_number() const { return this->number_; }
+	int advertisement::get_quantity() const { return this->quantity_; }
+
+	bool advertisement::operator==(const advertisement& a) const {
+		return this->number_ == a.get_number();
+	}
+
+	std::priority_queue<bid>& advertisement::get_bids() { return this->bids_; }
+
+	std::vector<bid> advertisement::get_top_dutch_bids() const {
+
+		std::vector<bid> vector;
+		auto temp_bids = bids_;
+		auto q = 0;
+		while (!bids_.empty() && q < quantity_) {
+			vector.push_back(temp_bids.top());
+			q += temp_bids.top().get_quantity();
+			temp_bids.pop();
+		}
+
+		return vector;
+	}
+
+	std::istream& operator>>(std::istream& stream, advertisement& a) {
+		string title, email, body;
+		int quantity;
+		date start, close;
+		stream >> title >> email >> quantity >> start >> close >> body;
+
+		a.set_body(body);
+		a.set_close(close);
+		a.set_start(start);
+		a.set_title(title);
+		a.set_quantity(quantity);
+		a.set_email(email);
+
+		return stream;
+	}
 }

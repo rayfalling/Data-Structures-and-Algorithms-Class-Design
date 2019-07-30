@@ -1,8 +1,8 @@
 #include "GlobalSettings.h"
 
-Categories categories;
-listing advertisements;
-group users;
+model::categories categories;
+model::listing advertisements;
+model::group users;
 
 int category_counter = 0;
 int advertisement_counter = 0;

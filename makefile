@@ -7,17 +7,16 @@ Source-Dirs := $(shell find ./src -maxdepth 5 -type d)
 Sourece-Cpp-Files := $(foreach dir,$(Source-Dirs),$(wildcard $(dir)/*.cpp))
 Sourece-C-Files := $(foreach dir,$(Source-Dirs),$(wildcard $(dir)/*.c))
 
-Sourece-Cpp-INC := $(patsubst %.cpp,%.hpp, $(Sourece-Cpp-Files))
-Sourece-C-INC := $(patsubst %.c,%.h, $(Sourece-C-Files))
+Sourece-INC :=  $(foreach dir,$(Source-Dirs),$(wildcard $(dir)/*.hpp)) $(foreach dir,$(Source-Dirs),$(wildcard $(dir)/*.h))
 
 Sourece-Obj := $(patsubst %.cpp,%.o, $(Sourece-Cpp-Files)) $(patsubst %.c,%.o, $(Sourece-C-Files))
 
-BuildDir := ./build
+BuildDir := build
 ObjDir := $(BuildDir)/obj
 
 all: directories server 
 
-server: $(Sourece-C-INC) $(Sourece-Cpp-INC) $(Sourece-Obj) 
+server: $(Sourece-INC) $(Sourece-Obj) 
 	$(CC) $(Sourece-C-Files) $(Sourece-Cpp-Files) $(CFLAGS) -o $(BuildDir)/main
 
 directories: $(BuildDir) $(ObjDir)
