@@ -9,7 +9,7 @@
                         <i class="el-icon-menu"></i>
                         <span slot="title">首页</span>
                     </el-menu-item>
-                    <el-menu-item index="2" route="/exercise">
+                    <el-menu-item index="2" route="/exercise/login">
                         <i class="el-icon-cpu"></i>
                         <span slot="title">实验</span>
                     </el-menu-item>

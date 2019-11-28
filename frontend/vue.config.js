@@ -5,7 +5,8 @@ const baseUrl = process.env.NODE_ENV === "production" ? "/static/" : "/"; //font
 
 
 module.exports = {
-  publicPath:'/',//vue-cli3.3+新版本使用
+  //vue-cli3.3+新版本使用
+  publicPath:'/',
   //输出文件目录
   outputDir: 'dist',
   // eslint-loader 是否在保存的时候检查
@@ -28,8 +29,9 @@ module.exports = {
      * https://cli.vuejs.org/zh/guide/html-and-static-assets.html#prefetch
      * 而且预渲染时生成的prefetch标签是modern版本的，低版本浏览器是不需要的
      */
-    config.plugins.delete('prefetch');
-    config.resolve.symlinks(true);
+    // config.plugins.delete('prefetch');
+    // config.plugins.delete('preload');
+    // config.resolve.symlinks(true);
     return config;
     //if(process.env.NODE_ENV === 'production') { // 为生产环境修改配置...process.env.NODE_ENV !== 'development'
     //} else {// 为开发环境修改配置...
