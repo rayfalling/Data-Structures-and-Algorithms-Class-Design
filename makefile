@@ -1,5 +1,5 @@
 CC=g++
-CLAGS=-g -ansi -pedantic -std=c++11
+CCFLAGS=-ansi -pedantic -std=c++11
 MKDIR = mkdir -p
 
 Source-Dirs := $(shell find ./src -maxdepth 5 -type d)
@@ -16,8 +16,11 @@ ObjDir := $(BuildDir)/obj
 
 all: directories server 
 
+debug: CCFLAGS += -DDEBUG -g
+debug: server
+
 server: $(Sourece-INC) $(Sourece-Obj) 
-	$(CC) $(Sourece-C-Files) $(Sourece-Cpp-Files) $(CFLAGS) -o $(BuildDir)/main
+	$(CC) $(Sourece-C-Files) $(Sourece-Cpp-Files) $(CCFLAGS) -o $(BuildDir)/main
 
 directories: $(BuildDir) $(ObjDir)
 
@@ -33,7 +36,7 @@ clean:
 	rm $(BuildDir)/main
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $(ObjDir)/$(notdir $@)
+	$(CC) $(CCFLAGS) -c $< -o $(ObjDir)/$(notdir $@)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $(ObjDir)/$(notdir $@)
+	$(CC) $(CCFLAGS) -c $< -o $(ObjDir)/$(notdir $@)

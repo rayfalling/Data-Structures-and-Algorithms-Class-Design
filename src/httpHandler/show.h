@@ -8,13 +8,16 @@ struct mg_connection;
 namespace http_handlers{
 	class display {
 	public:
-		static bool display_advertisement(std::string url, std::string body,
+		static bool request_list(std::string url, std::string body,
 		                  std::string method, mg_connection* c,
 		                  OnRspCallback rsp_callback);
-		static bool display_listing(std::string url, std::string body,
+		static bool request_list_sorted(std::string url, std::string body,
 		                     std::string method, mg_connection* c,
 		                     OnRspCallback rsp_callback);
-		static bool logout(std::string url, std::string body,
+		static bool request_list_filter(std::string url, std::string body,
+		                   std::string method, mg_connection* c,
+		                   OnRspCallback rsp_callback);
+		static bool add_advertisement(std::string url, std::string body,
 		                   std::string method, mg_connection* c,
 		                   OnRspCallback rsp_callback);
 	};

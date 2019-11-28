@@ -1,11 +1,15 @@
 #pragma once
-#include <vector>
 
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <algorithm>
+#include <functional>
 #include "Advertisement.h"
+
 namespace model{
 	class listing final {
-	protected:
-		typedef std::vector<advertisement*> container;
+		typedef std::vector<model::advertisement*> container;
 	public:
 		~listing();
 		typedef container::iterator iterator;
@@ -16,5 +20,10 @@ namespace model{
 		void add(advertisement* ptr);
 		iterator begin();
 		iterator end();
+		std::vector<model::advertisement*> get_container();
+		// return a sorted copy of this Listing
+		listing sort(string field);
+		// return a filtered by keyword copy of this Listing
+		listing filter(string keyword);
 	};
 }

@@ -15,7 +15,6 @@ namespace model{
 		this->number_ = 0;
 		this->parent_ = parent;
 		this->name_ = std::move(name);
-
 		this->sub_categories_ = std::vector<category*>();
 		this->items_ = std::vector<int>();
 	}

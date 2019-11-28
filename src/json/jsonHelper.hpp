@@ -2,6 +2,7 @@
 
 #include "json.hpp"
 #include <string>
+#include <vector>
 
 template <typename T>
 class json_helper {

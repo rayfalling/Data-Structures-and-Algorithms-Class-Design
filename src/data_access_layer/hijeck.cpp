@@ -1,15 +1,14 @@
 #include "hijeck.h"
 
-
-//hijeck to model::date serializer
-void model::to_json(nlohmann::json& j, const model::date& date) {
+// hijeck to model::date serializer
+void model::to_json(nlohmann::json &j, const model::date &date) {
 	j = nlohmann::json{
-		{"year", date.get_year()}, {"month", date.get_month()}, {"day", date.get_day()},
-		{"hour", date.get_hour()}, {"minute", date.get_minute()}, {"second", date.get_second()}
-	};
+		{"year", date.get_year()},	   {"month", date.get_month()},
+		{"day", date.get_day()},	   {"hour", date.get_hour()},
+		{"minute", date.get_minute()}, {"second", date.get_second()}};
 }
 
-void model::from_json(const nlohmann::json& j, model::date& date) {
+void model::from_json(const nlohmann::json &j, model::date &date) {
 	if (!j["year"].is_null()) {
 		auto year = j.at("year").get<int>();
 		date.set_year(year);
@@ -36,17 +35,17 @@ void model::from_json(const nlohmann::json& j, model::date& date) {
 	}
 }
 
-//hijeck to model::advertisement serializer
-void model::to_json(nlohmann::json& j, const model::advertisement& adv){
+// hijeck to model::advertisement serializer
+void model::to_json(nlohmann::json &j, const model::advertisement &adv) {
 	j = nlohmann::json{
-		{"number", adv.get_number()}, {"quantity", adv.get_quantity()}, {"title", adv.get_title()},
-		{"email", adv.get_email()}, {"body", adv.get_body()}, {"start", adv.get_start()}, 
-		{"close", adv.get_close()}
-	};
+		{"number", adv.get_number()}, {"quantity", adv.get_quantity()},
+		{"title", adv.get_title()},	  {"email", adv.get_email()},
+		{"body", adv.get_body()},	  {"start", adv.get_start()},
+		{"close", adv.get_close()}};
 }
 
-void model::from_json(const nlohmann::json& j, model::advertisement& adv){
-if (!j["number"].is_null()) {
+void model::from_json(const nlohmann::json &j, model::advertisement &adv) {
+	if (!j["number"].is_null()) {
 		auto number = j.at("number").get<int>();
 		adv.set_number(number);
 	}
@@ -74,4 +73,21 @@ if (!j["number"].is_null()) {
 		auto close = j.at("close").get<model::date>();
 		adv.set_close(close);
 	}
+}
+
+void model::to_json(nlohmann::json &j, const model::listing &adv_list) {
+	nlohmann::json tmp;
+	auto		   list = adv_list;
+	if (list.begin() == list.end()) {
+		tmp = "{}"_json;
+	} else {
+		for (auto it = list.begin(); it < list.end(); it++) {
+			tmp.push_back(**it);
+		}
+	}
+	j = tmp;
+}
+
+void model::from_json(const nlohmann::json &j, model::listing &adv_list) {
+	// todo
 }

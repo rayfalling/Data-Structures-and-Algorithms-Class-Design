@@ -13,7 +13,12 @@ namespace model{
 	}
 
 	void categories::add(category* ptr) { objects_.push_back(ptr); }
+
 	categories::iterator categories::begin() { return objects_.begin(); }
 
 	categories::iterator categories::end() { return objects_.end(); }
+
+	std::vector<category*> categories::get_container(){
+		return this->objects_;
+	}
 }

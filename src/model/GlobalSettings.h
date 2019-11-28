@@ -16,5 +16,3 @@ extern int advertisement_counter;
 
 extern bool create_verified;
 extern bool login_failed;
-
-void init_global_settings();

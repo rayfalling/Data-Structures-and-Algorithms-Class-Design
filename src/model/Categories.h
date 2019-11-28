@@ -23,6 +23,8 @@ namespace model{
 		category* operator[](const int& number);
 		void add(category* ptr);
 
+		std::vector<category*> get_container();
+
 		iterator begin();
 		iterator end();
 

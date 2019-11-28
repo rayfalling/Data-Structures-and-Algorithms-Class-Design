@@ -8,7 +8,9 @@ namespace data_access_layer{
 	}
 
 	void from_json(const nlohmann::json& j, login& account) {
-		account.email = j.at("email").get<std::string>();
-		account.password = j.at("password").get<std::string>();
+		if (!j["email"].is_null()) 
+			account.email = j.at("email").get<std::string>();
+		if (!j["password"].is_null()) 
+			account.password = j.at("password").get<std::string>();
 	}
 }
