@@ -63,7 +63,8 @@
         },
         methods: {
             async Logout() {
-                let response = await this.axios.post("/api/logout")
+                let response = await this.axios.post("/api/logout").catch(_ => {
+                });
                 if ("status" in response.data && response.data.status) {
                     this.$message({
                         showClose: true,
@@ -85,11 +86,11 @@
                 }
             },
             async RequestList() {
-                let response = await this.axios.post("/api/list");
-                if ("status" in response.data && response.data.status) {
-
+                let response = await this.axios.post("/api/list").catch(_ => tableData = []);
+                if (response.length === 0) {
+                    tableData = []
                 } else {
-                   
+                    tableData = response;
                 }
             }
         },
