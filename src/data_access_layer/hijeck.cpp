@@ -45,10 +45,6 @@ void model::to_json(nlohmann::json &j, const model::advertisement &adv) {
 }
 
 void model::from_json(const nlohmann::json &j, model::advertisement &adv) {
-	if (!j["number"].is_null()) {
-		auto number = j.at("number").get<int>();
-		adv.set_number(number);
-	}
 	if (!j["quantity"].is_null()) {
 		auto quantity = j.at("quantity").get<int>();
 		adv.set_quantity(quantity);
@@ -89,5 +85,5 @@ void model::to_json(nlohmann::json &j, const model::listing &adv_list) {
 }
 
 void model::from_json(const nlohmann::json &j, model::listing &adv_list) {
-	// todo
+	//no need impletion
 }

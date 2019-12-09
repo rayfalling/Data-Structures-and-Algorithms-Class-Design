@@ -40,11 +40,12 @@ namespace http_handlers{
 	                                    mg_connection* c, OnRspCallback rsp_callback) {
 		transform(method.begin(), method.end(), method.begin(), tolower);
 		if (method != "post")return false;
-	 	auto json_object = json_helper<model::advertisement>::parse_json_string(std::move(body));
+	 	model::advertisement json_object = json_helper<model::advertisement>::parse_json_string(std::move(body));
 		json_object.set_number(++advertisement_counter);
-		advertisements.add(&json_object);
+		auto* adv = new model::advertisement(json_object);
+		advertisements.add(adv);
 		const nlohmann::json response = {{"status", true}};
-		rsp_callback(c,response);
+		rsp_callback(c, response.dump());
 		return true;
 	}
 }
